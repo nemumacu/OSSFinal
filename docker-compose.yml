@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  back:
+    build: ./back
+    ports:
+      - "8000:8000"
+    
+  front:
+    build: ./front
+    ports:
+      - "8501:8501"
+    depends_on:
+      - back

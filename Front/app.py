@@ -1,14 +1,14 @@
 import streamlit as st
 import requests
 
-# 페이지 기본 설정
+
 st.set_page_config(page_title="애니메이션 추천기", page_icon="📺", layout="centered")
 
 st.title("📺 맞춤형 애니메이션 추천기")
 st.markdown("당신의 취향을 분석하여 최적의 애니메이션을 찾아드립니다!")
 st.divider()
 
-# --- 1. 사용자 입력 받기 ---
+
 st.subheader("1. 선호 장르 (제한 없음)")
 genre_options = [
     "다크", "마법소녀", "판타지", "이능력", "배틀", "일상", "러브코미디", "순정", 
@@ -38,7 +38,7 @@ selected_tag = st.selectbox("태그 선택 (선택사항)", tag_options)
 
 st.divider()
 
-# --- 2. FastAPI로 데이터 전송 및 결과 출력 ---
+
 if st.button("🚀 추천 받기!", type="primary"):
     if not selected_genres or not selected_styles or not selected_purposes:
         st.warning("장르, 스타일, 목적을 최소 1개 이상 선택해 주세요!")
@@ -53,7 +53,7 @@ if st.button("🚀 추천 받기!", type="primary"):
 
         with st.spinner("데이터베이스를 뒤지는 중... 🔍"):
             try:
-                # 데이터를 직접 읽는 대신, 로컬 백엔드 서버(FastAPI)로 요청을 보냅니다!
+                
                 response = requests.post("http://back:8000/recommend", json=payload)
                 response_data = response.json()
 
